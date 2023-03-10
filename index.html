@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<title>Meu Projeto A</title>
+		<meta charset="utf-8">
+	</head>
+	<body>
+		<p> Aqui vai o meu texto.</p>
+		
+		<button id="btn-carregar-dados">Carregar dados</button>
+		<div id="dados"></div>
+								
+		<script>
+			const btnCarregarDados = document.getElementById("btn-carregar-dados");
+			const dadosContainer = document.getElementById("dados");
+
+			btnCarregarDados.addEventListener("click", () => {
+				fetch("https://jsonplaceholder.typicode.com/posts")
+			.then(response => response.json())
+            .then(data => {
+                // Armazena os dados em localStorage
+                localStorage.setItem("dados", JSON.stringify(data));
+
+                // Exibe os dados na tela
+                dadosContainer.innerText = JSON.stringify(data, null, 2);
+				});
+			});
+		</script>
+
+	</body>
+</html>
